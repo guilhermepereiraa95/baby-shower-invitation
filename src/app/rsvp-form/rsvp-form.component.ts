@@ -1,5 +1,7 @@
 import { AfterViewChecked, AfterViewInit, Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { EmailService } from '../services/email.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-rsvp-form',
@@ -18,9 +20,11 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   ]
 })
 export class RsvpFormComponent implements AfterViewChecked {
-  guestName: string = '';
-  attendance: string = '';
+  constructor(public emailService: EmailService, public toastr: ToastrService) {}
+  guestName: any = '';
+  attendance: any = '';
   animationState: string = 'default';
+  formSubmitted = false;
 
   ngAfterViewChecked(): void {
     setTimeout(() => {
@@ -29,8 +33,13 @@ export class RsvpFormComponent implements AfterViewChecked {
   }
 
   submitForm() {
-    // Handle form submission logic here
-    console.log('Form submitted:', this.guestName, this.attendance);
+    const emailData = {nome: this.guestName, presenca: this.attendance}
+    this.emailService.sendEmail(emailData).subscribe((value: any) => {
+      if(value?.ok){
+        this.toastr.success('Sua mensagem foi enviada! Obrigado!');
+        this.formSubmitted = true;
+      }
+    })
 
   }
 }
