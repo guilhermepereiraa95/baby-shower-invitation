@@ -36,7 +36,7 @@ export class RsvpFormComponent implements AfterViewChecked {
     const emailData = {nome: this.guestName, presenca: this.attendance}
     this.emailService.sendEmail(emailData).subscribe((value: any) => {
       if(value?.ok){
-        this.toastr.success('Sua mensagem foi enviada! Obrigado!');
+        this.toastr.success('Presença confirmada!');
         this.formSubmitted = true;
       }
     })
