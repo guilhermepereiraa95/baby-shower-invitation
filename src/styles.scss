@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background: url('./assets/img/background.png') no-repeat center center fixed;
+  margin: 0; /* Remove default body margin */
+  padding: 0; /* Remove default body padding */
+  background-size: cover;
+  height: 100vh; /* Make the body take the full height of the viewport */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+

@@ -1,12 +1,36 @@
-<form (ngSubmit)="submitForm()">
-  <label for="name">Seu nome:</label>
-  <input type="text" id="name" name="name" [(ngModel)]="guestName" required>
+import { AfterViewChecked, AfterViewInit, Component, OnInit } from '@angular/core';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
-  <label for="attendance">Will you attend?</label>
-  <select id="attendance" name="attendance" [(ngModel)]="attendance" required>
-    <option value="yes">Yes</option>
-    <option value="no">No</option>
-  </select>
+@Component({
+  selector: 'app-rsvp-form',
+  templateUrl: './rsvp-form.component.html',
+  animations: [
+    trigger('appearAnimation', [
+      state('default', style({
+        opacity: 0
+      })),
+      state('appear', style({
+        opacity: 1
+      })),
+      transition('default <=> appear', animate('1000ms ease-in-out'))
+    ]),
 
-  <button type="submit">Submit</button>
-</form>
+  ]
+})
+export class RsvpFormComponent implements AfterViewChecked {
+  guestName: string = '';
+  attendance: string = '';
+  animationState: string = 'default';
+
+  ngAfterViewChecked(): void {
+    setTimeout(() => {
+      this.animationState = 'appear';
+    }, 1200);
+  }
+
+  submitForm() {
+    // Handle form submission logic here
+    console.log('Form submitted:', this.guestName, this.attendance);
+
+  }
+}

@@ -1,1 +1,22 @@
-<p>rsvp-form works!</p>
+<div class="container" [@appearAnimation]="animationState">
+  <h1 class="text-center">Chá de bebê do Liam!</h1>
+  <p class="text-center">Queridos familiares e amigos, convidamos vocês para celebrarem a chegada do nosso pequenino!</p>
+  <form (ngSubmit)="submitForm()" class="row mt-3">
+    <div class="form-group col-6">
+      <label for="name">Seu nome:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="guestName" class="form-control" required>
+    </div>
+
+    <div class="form-group col-6">
+      <label for="attendance">Irei comparecer?</label>
+      <select id="attendance" name="attendance" [(ngModel)]="attendance" class="form-select" required>
+        <option value="yes">Sim</option>
+        <option value="no">Não</option>
+        <option value="maybe">Talvez</option>
+      </select>
+    </div>
+    <div class="col-12 mt-3">
+      <button type="submit" class="btn btn-primary">Confirmar presença</button>
+    </div>
+  </form>
+</div>
