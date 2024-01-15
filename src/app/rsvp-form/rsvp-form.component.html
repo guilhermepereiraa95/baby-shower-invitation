@@ -2,9 +2,8 @@
   <h1 class="text-center card bg-light">Chá de bebê do Liam!</h1>
   <div class="m-3">
     <form (ngSubmit)="submitForm()" class="row" *ngIf="!formSubmitted">
-      <p class="text-center">Queridos familiares e amigos, convidamos vocês para celebrarem a chegada do nosso pequenino!
+      <p class="text-center">Queridos familiares e amigos, convidamos vocês para celebrarem a chegada do nosso pequenino! Favor confirmar a presença:
       </p>
-      <p>Por favor, confirme sua presença no formulário abaixo:</p>
       <div class="form-group col-6">
         <label for="name">Nome:</label>
         <input type="text" id="name" name="name" [(ngModel)]="guestName" class="form-control" required>
