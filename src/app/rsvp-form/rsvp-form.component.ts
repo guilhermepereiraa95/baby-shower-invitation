@@ -2,6 +2,7 @@ import { AfterViewChecked, AfterViewInit, Component, OnInit } from '@angular/cor
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { EmailService } from '../services/email.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-rsvp-form',
@@ -20,11 +21,15 @@ import { ToastrService } from 'ngx-toastr';
   ]
 })
 export class RsvpFormComponent implements AfterViewChecked {
-  constructor(public emailService: EmailService, public toastr: ToastrService) {}
-  guestName: any = '';
-  attendance: any = '';
   animationState: string = 'default';
   formSubmitted = false;
+  form: FormGroup;
+  constructor(public emailService: EmailService, public toastr: ToastrService, private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      name: ['', Validators.required], // Add the 'name' field with a required validator
+      attendance: ['', Validators.required], // Add the 'attendance' field with a required validator
+    });
+  }
 
   ngAfterViewChecked(): void {
     setTimeout(() => {
@@ -33,8 +38,9 @@ export class RsvpFormComponent implements AfterViewChecked {
   }
 
   submitForm() {
-    const emailData = {nome: this.guestName, presenca: this.attendance}
-    this.emailService.sendEmail(emailData).subscribe((value: any) => {
+    const emailData = {nome: this.name.value, presenca: this.attendance.value}
+    this.emailService.sendEmail(emailData)
+    .subscribe((value: any) => {
       if(value?.ok){
         this.toastr.success('Presença confirmada!');
         this.formSubmitted = true;
@@ -42,4 +48,13 @@ export class RsvpFormComponent implements AfterViewChecked {
     })
 
   }
+
+  get name(): FormControl {
+    return this.form.get('name') as FormControl;
+  }
+
+  get attendance(): FormControl {
+    return this.form.get('attendance') as FormControl;
+  }
+
 }
