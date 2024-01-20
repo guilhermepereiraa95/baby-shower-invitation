@@ -34,7 +34,7 @@ export class RsvpFormComponent implements AfterViewChecked {
   ngAfterViewChecked(): void {
     setTimeout(() => {
       this.animationState = 'appear';
-    }, 500);
+    }, 1000);
   }
 
   submitForm() {
