@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="submitForm()" class="container" *ngIf="!formSubmitted">
+<form [formGroup]="form" (ngSubmit)="submitForm()" class="container" *ngIf="!formSubmitted" [@appearAnimation]="animationState">
   <p class="text-center">Queridos familiares e amigos, convidamos vocês para celebrarem a chegada do nosso pequenino! Favor confirmar a presença:</p>
 
   <div class="form-group col-12">
