@@ -1,13 +1,13 @@
 <form [formGroup]="form" (ngSubmit)="submitForm()" class="container" *ngIf="!formSubmitted" [@appearAnimation]="animationState">
   <p class="text-center">Queridos familiares e amigos, convidamos vocês para celebrarem a chegada do nosso pequenino! Favor confirmar a presença:</p>
 
-  <div class="form-group col-12">
+  <div class="form-group col-12 mt-1">
     <label for="name">Nome:</label>
     <input type="text" id="name" formControlName="name" class="form-control">
     <p *ngIf="name.invalid" class="text-danger">Campo obrigatório</p>
   </div>
 
-  <div class="form-group col-3">
+  <div class="form-group col-3 mt-1">
     <label for="attendance">Presença:</label>
     <select id="attendance" formControlName="attendance" class="form-select">
       <option value="yes">Sim</option>
