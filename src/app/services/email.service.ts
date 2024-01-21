@@ -2,6 +2,7 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class EmailService {
 
   constructor(private http: HttpClient) {}
 
-  sendEmail(data: any) {
+  sendEmail(data: any): Observable<any> {
     return this.http.post(this.formSpreeEndpoint, data);
   }
 }
