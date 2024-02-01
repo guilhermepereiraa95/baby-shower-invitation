@@ -38,15 +38,17 @@ export class RsvpFormComponent implements AfterViewChecked {
   }
 
   submitForm() {
-    const emailData = {nome: this.name.value, presenca: this.attendance.value}
-    this.emailService.sendEmail(emailData)
-    .subscribe((value: any) => {
-      if(value?.ok){
-        this.toastr.success('Presença confirmada!');
-        this.formSubmitted = true;
-      }
-    })
-
+    if (this.form.valid) {
+      const emailData = { nome: this.name.value, presenca: this.attendance.value };
+      this.emailService
+      .sendEmail(emailData)
+      .subscribe((value: any) => {
+        if(value?.ok) {
+          this.toastr.success('Presença confirmada!');
+          this.formSubmitted = true;
+        }
+      })
+    }
   }
 
   get name(): FormControl {

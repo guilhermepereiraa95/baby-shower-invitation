@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'baby-shower-invitation';
+  title = 'Chá de bebê do Liam';
 }
